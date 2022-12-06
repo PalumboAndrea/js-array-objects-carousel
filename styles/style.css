@@ -9,7 +9,7 @@ main{
 
 div.carousel-wrapper{
     width: 77%;
-    height: 680px;
+    height: 100%;
     margin: auto;
     background-color: aqua;
     position: relative;
@@ -62,4 +62,14 @@ div.my_carousel-item img{
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.none{
+    display: none;
+}
+
+.image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
