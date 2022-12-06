@@ -37,13 +37,13 @@ div.next{
 }
 
 div.previous{
-    top: 2.5rem;
+    top: 1rem;
     left: 50%;
     transform: translateX(-50%);
 }
 
 div.next{
-    bottom: 2.5rem;
+    bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -72,9 +72,31 @@ div.my_carousel-item img{
     display: block;
 }
 
+.image-container{
+    height: 100%;
+}
+
 .image{
     height: 100%;
     width: 100%;
     object-fit: cover;
+    object-position: center;
 }
+
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    background-color: rgba(128, 128, 128, 0.384);
+}
+
+.description p{
+    margin: 0;
+}
+
+
 

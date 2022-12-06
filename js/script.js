@@ -17,42 +17,21 @@ l'immagine attiva diventerà visibile.
 
 Milestone 2:
 Aggiungiamo alla visualizzazione delle immagini anche titolo e testo relative alla singola immagine.
-Bonus 1:
 
+Bonus 1:
 Aggiungere il ciclo infinito del carosello.
 Ovvero se l'immagine attiva è la prima e l'utente clicca la freccia verso l'alto,
 l'immagine che deve attivarsi sarà l'ultima e
 viceversa per l'ultima immagine se l'utente clicca la freccia verso il basso.
+
 Bonus 2:
-
 Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l’immagine corrispondente.
-Bonus 3:
 
+Bonus 3:
 Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva
 dovrà cambiare alla successiva.
 
-
-if (num > 0 && num<images.length){
-      for (i=0; i<images.length; i++){
-         if (images[i].none == num){
-            usefull[num].classList.add('block');
-         } if (images[i].none == num || images[i].none > num){
-            usefull[num].classList.add('block');
-            usefull[num-1].classList.remove('block');
-         } if (num >= images.length){
-            usefull[num-1].classList.remove('block');
-            num = 0;
-         }
-      } 
-   } else {
-      usefull[num-1].classList.remove('block');
-      num = 0;
-      usefull[num].classList.add('block');
-   }
-
 */
-
-
 
 const images = [
    {
@@ -82,29 +61,48 @@ const images = [
    }
 ];
 
-``
+let carouselImage = document.querySelector('.carousel-image');
 
-
-let imageContainer = document.querySelector('.carousel-image');
 
 let previousButton = document.querySelector('.button.previous');
 
 let nextButton = document.querySelector('.button.next');
 
+// The usefull array is used to contain all the HTML image element after their creation.
+// In this way I can modify the HTML element (example adding classes) using the array index.
+
 let usefull = [];
 
 images.forEach((element) => {
+   let imageContainer = document.createElement('div');
+   imageContainer.classList.add('image-container');
+   carouselImage.append(imageContainer);
+
    image = document.createElement('img');
    image.setAttribute('src', `./${element.image}`);
-   image.classList.add('image', 'none');
+   image.classList.add('image');
+
+   let imageInfo = document.createElement('div');
+   imageInfo.classList.add('description', 'me-4', 'px-4');
+   imageContainer.append(imageInfo);
+
+   title = document.createElement('h2');
+   title.innerHTML = element.title;
+   imageInfo.append(title);
+   text = document.createElement('p');
+   text.innerHTML = element.text;
+   imageInfo.append(text);
+
+   imageContainer.classList.add('none');
    imageContainer.append(image);
-   usefull.push(image);
+   usefull.push(imageContainer);
 });
+
+
 
 for (i=0; i<images.length; i++){
    images[i].none = i;
 }
-
 
 num = 0;
 
@@ -116,13 +114,10 @@ nextButton.addEventListener ('click', function(){
       usefull[num-1].classList.remove('block');
       num = 0;
    }
-
    usefull[num].classList.toggle('block');
-   
    if (num>0 && num<images.length){
       usefull[num-1].classList.remove('block');
    }
-
 })
 
 previousButton.addEventListener ('click', function(){
