@@ -68,8 +68,13 @@ div.my_carousel-item img{
     display: none;
 }
 
+.block{
+    display: block;
+}
+
 .image{
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
+
