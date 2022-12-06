@@ -81,6 +81,8 @@ images.forEach((element) => {
    image = document.createElement('img');
    image.setAttribute('src', `./${element.image}`);
    image.classList.add('image');
+   imageContainer.classList.add('none');
+   imageContainer.append(image);
 
    let imageInfo = document.createElement('div');
    imageInfo.classList.add('description', 'me-4', 'px-4');
@@ -93,16 +95,8 @@ images.forEach((element) => {
    text.innerHTML = element.text;
    imageInfo.append(text);
 
-   imageContainer.classList.add('none');
-   imageContainer.append(image);
    usefull.push(imageContainer);
 });
-
-
-
-for (i=0; i<images.length; i++){
-   images[i].none = i;
-}
 
 num = 0;
 
