@@ -73,88 +73,78 @@ const images = [
    }
 ];
 
-
+``
 
 
 let imageContainer = document.querySelector('.carousel-image');
 
 let previousButton = document.querySelector('.button.previous');
 
-
 let nextButton = document.querySelector('.button.next');
-
-
-let image
-
-
-
-`string text`
-
-
-
-
-
-let num = -1;
-
 
 let usefull = [];
 
-console.log(images[1])
+images.forEach((element) => {
+   image = document.createElement('img');
+   console.log(element.image);
+   image.setAttribute('src', `./${element.image}`);
+   image.classList.add('image', 'none');
+   imageContainer.append(image);
+   usefull.push(image);
+});
+
+for (i=0; i<images.length; i++){
+   images[i].none = i;
+}
+ 
+
+console.log(images);
 
 
+
+
+console.log(usefull);
+
+
+num = -1;
 
 nextButton.addEventListener ('click', function(){
-
-   num++
-
-   usefull.push(images[num++]);
-
-
-   for (i=0; i<usefull.length; i++){
-      image = document.createElement('img');
-      image.classList.add('none');
-      image.setAttribute('src', `./${usefull[i].image}`);
-      
-      image.classList.add('image');
-      imageContainer.append(image);
-   }
-
-
-   console.log(usefull);
-   console.log(num);
-
-   
-   
-   
-   /*num++;
-   console.log(num);
-   if(images[num].none == num){
-      image.classList.remove('none');
-   } else {
-      console.log('non ancora');
-   }
-
-   console.log(num);
-
-
-
+   num = num + 1;
 
 
 
    for (i=0; i<images.length; i++){
-   image = document.createElement('img');
-   console.log(images[i].image);
-   image.setAttribute('src', `./${images[i].image}`);
-   image.classList.add(`image${[i]}`, 'image', 'none');
-   imageContainer.append(image);
-   images[i].none = i;
-}
-   */
+      if (images[i].none == num){
+         console.log(images[i].none);
+         console.log(num);
+         usefull[num].classList.add('block');
+      } if (images[i].none == num || images[i].none > num){
+         usefull[num].classList.add('block');
+         usefull[num-1].classList.remove('block');
+      } if (num > images.length - 1){
+         usefull[num-1].classList.remove('block');
+         num = 0;
+      }
+   }  
+
 
 })
+/*
+for (i=0; i<images.length+1; i++){
+      if (images[i].none == num){
+         console.log(images[i].none);
+         console.log(num);
+         usefull[num].classList.add('block');
+      } if (images[i].none > num){
+         usefull[num].classList.add('block');
+         usefull[num-1].classList.remove('block');
+      }
+   }  
 
 
 
+
+*/
    
 
 
