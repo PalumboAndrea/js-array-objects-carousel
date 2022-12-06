@@ -30,6 +30,17 @@ Bonus 3:
 
 Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva
 dovrà cambiare alla successiva.
+
+
+images.forEach((element) => {
+   image = document.createElement('img');
+   console.log(element.image);
+   image.setAttribute('src', `./${element.image}`);
+   image.classList.add('image', 'none');
+   imageContainer.append(image);
+   element.none = "none" + element;
+});
+
 */
 
 
@@ -68,34 +79,78 @@ const images = [
 let imageContainer = document.querySelector('.carousel-image');
 
 let previousButton = document.querySelector('.button.previous');
-console.log(previousButton);
+
 
 let nextButton = document.querySelector('.button.next');
-console.log(nextButton);
+
 
 let image
 
-images.forEach((element) => {
-   image = document.createElement('img');
-   console.log(element.image);
-   image.setAttribute('src', `./${element.image}`);
-   image.classList.add('image', 'none');
-   imageContainer.append(image);
-   element.none = "none";
-});
-console.log(images)
+
+
+`string text`
+
+
+
+
+
+let num = -1;
+
+
+let usefull = [];
+
+console.log(images[1])
+
 
 
 nextButton.addEventListener ('click', function(){
 
-   images.forEach((element) => {
+   num++
+
+   usefull.push(images[num++]);
+
+
+   for (i=0; i<usefull.length; i++){
+      image = document.createElement('img');
+      image.classList.add('none');
+      image.setAttribute('src', `./${usefull[i].image}`);
       
-   });
-   image.classList.remove('none');
+      image.classList.add('image');
+      imageContainer.append(image);
+   }
 
+
+   console.log(usefull);
+   console.log(num);
 
    
    
+   
+   /*num++;
+   console.log(num);
+   if(images[num].none == num){
+      image.classList.remove('none');
+   } else {
+      console.log('non ancora');
+   }
+
+   console.log(num);
+
+
+
+
+
+
+   for (i=0; i<images.length; i++){
+   image = document.createElement('img');
+   console.log(images[i].image);
+   image.setAttribute('src', `./${images[i].image}`);
+   image.classList.add(`image${[i]}`, 'image', 'none');
+   imageContainer.append(image);
+   images[i].none = i;
+}
+   */
+
 })
 
 
