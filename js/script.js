@@ -32,14 +32,23 @@ Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi)
 dovrà cambiare alla successiva.
 
 
-images.forEach((element) => {
-   image = document.createElement('img');
-   console.log(element.image);
-   image.setAttribute('src', `./${element.image}`);
-   image.classList.add('image', 'none');
-   imageContainer.append(image);
-   element.none = "none" + element;
-});
+if (num > 0 && num<images.length){
+      for (i=0; i<images.length; i++){
+         if (images[i].none == num){
+            usefull[num].classList.add('block');
+         } if (images[i].none == num || images[i].none > num){
+            usefull[num].classList.add('block');
+            usefull[num-1].classList.remove('block');
+         } if (num >= images.length){
+            usefull[num-1].classList.remove('block');
+            num = 0;
+         }
+      } 
+   } else {
+      usefull[num-1].classList.remove('block');
+      num = 0;
+      usefull[num].classList.add('block');
+   }
 
 */
 
@@ -86,7 +95,6 @@ let usefull = [];
 
 images.forEach((element) => {
    image = document.createElement('img');
-   console.log(element.image);
    image.setAttribute('src', `./${element.image}`);
    image.classList.add('image', 'none');
    imageContainer.append(image);
@@ -96,55 +104,42 @@ images.forEach((element) => {
 for (i=0; i<images.length; i++){
    images[i].none = i;
 }
- 
-
-console.log(images);
 
 
+num = 0;
 
-
-console.log(usefull);
-
-
-num = -1;
+usefull[num].classList.add('block');
 
 nextButton.addEventListener ('click', function(){
-   num = num + 1;
+   num++;
+   if (num>=images.length){
+      usefull[num-1].classList.remove('block');
+      num = 0;
+   }
 
-
-
-   for (i=0; i<images.length; i++){
-      if (images[i].none == num){
-         console.log(images[i].none);
-         console.log(num);
-         usefull[num].classList.add('block');
-      } if (images[i].none == num || images[i].none > num){
-         usefull[num].classList.add('block');
-         usefull[num-1].classList.remove('block');
-      } if (num > images.length - 1){
-         usefull[num-1].classList.remove('block');
-         num = 0;
-      }
-   }  
-
+   usefull[num].classList.toggle('block');
+   
+   if (num>0 && num<images.length){
+      usefull[num-1].classList.remove('block');
+   }
 
 })
-/*
-for (i=0; i<images.length+1; i++){
-      if (images[i].none == num){
-         console.log(images[i].none);
-         console.log(num);
-         usefull[num].classList.add('block');
-      } if (images[i].none > num){
-         usefull[num].classList.add('block');
-         usefull[num-1].classList.remove('block');
-      }
-   }  
 
-
-
-
-*/
+previousButton.addEventListener ('click', function(){
+   num= num - 1;
+   if (num<0){
+      num = images.length - 1;
+      usefull[0].classList.remove('block');
+      usefull[num].classList.toggle('block');
+   } else if (num==0){
+      usefull[num+1].classList.remove('block');
+      usefull[num].classList.toggle('block');
+   } else {
+      usefull[num+1].classList.remove('block');
+      usefull[num].classList.toggle('block');
+   }
    
+})
+
 
 
