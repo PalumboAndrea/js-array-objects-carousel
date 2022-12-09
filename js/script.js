@@ -125,16 +125,20 @@ images.forEach((element, index) => {
 num = 0;
 
 usefull[num].classList.add('block');
+arrayForThumbnail[num].classList.add('image-thumbnail-active');
 
 nextButton.addEventListener ('click', function(){
    num++;
    if (num>=images.length){
       usefull[num-1].classList.remove('block');
+      arrayForThumbnail[num-1].classList.remove('image-thumbnail-active');
       num = 0;
    }
-   usefull[num].classList.toggle('block');
+   arrayForThumbnail[num].classList.add('image-thumbnail-active');
+   usefull[num].classList.add('block');
    if (num>0 && num<images.length){
       usefull[num-1].classList.remove('block');
+      arrayForThumbnail[num-1].classList.remove('image-thumbnail-active');
    }
 })
 
@@ -143,13 +147,19 @@ previousButton.addEventListener ('click', function(){
    if (num<0){
       num = images.length - 1;
       usefull[0].classList.remove('block');
-      usefull[num].classList.toggle('block');
+      arrayForThumbnail[0].classList.remove('image-thumbnail-active');
+      usefull[num].classList.add('block');
+      arrayForThumbnail[num].classList.add('image-thumbnail-active');
    } else if (num==0){
       usefull[num+1].classList.remove('block');
-      usefull[num].classList.toggle('block');
+      arrayForThumbnail[num+1].classList.remove('image-thumbnail-active');
+      usefull[num].classList.add('block');
+      arrayForThumbnail[num].classList.add('image-thumbnail-active');
    } else {
       usefull[num+1].classList.remove('block');
-      usefull[num].classList.toggle('block');
+      arrayForThumbnail[num+1].classList.remove('image-thumbnail-active');
+      usefull[num].classList.add('block');
+      arrayForThumbnail[num].classList.add('image-thumbnail-active');
    }
 })
 
