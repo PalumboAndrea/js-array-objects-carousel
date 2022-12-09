@@ -63,17 +63,20 @@ const images = [
 
 let carouselImage = document.querySelector('.carousel-image');
 
-
 let previousButton = document.querySelector('.button.previous');
 
 let nextButton = document.querySelector('.button.next');
+
+let carouselThumbnails = document.querySelector('.carousel-thumbnails');
 
 // The usefull array is used to contain all the HTML image element after their creation.
 // In this way I can modify the HTML element (example adding classes) using the array index.
 
 let usefull = [];
 
-images.forEach((element) => {
+let arrayForThumbnail = [];
+
+images.forEach((element, index) => {
    let imageContainer = document.createElement('div');
    imageContainer.classList.add('image-container');
    carouselImage.append(imageContainer);
@@ -85,7 +88,7 @@ images.forEach((element) => {
    imageContainer.append(image);
 
    let imageInfo = document.createElement('div');
-   imageInfo.classList.add('description', 'me-4', 'px-4');
+   imageInfo.classList.add('description', 'px-4');
    imageContainer.append(imageInfo);
 
    title = document.createElement('h2');
@@ -96,6 +99,27 @@ images.forEach((element) => {
    imageInfo.append(text);
 
    usefull.push(imageContainer);
+   
+
+   let imageThumbnails = document.createElement('div');
+   imageThumbnails.classList.add('image-thumbnails');
+   carouselThumbnails.append(imageThumbnails);
+
+   let imageForThumbnail = document.createElement('img');
+   imageForThumbnail.setAttribute('src', `./${element.image}`);
+   imageForThumbnail.classList.add('image');
+   imageThumbnails.append(imageForThumbnail);
+
+   arrayForThumbnail.push(imageForThumbnail);
+
+   imageForThumbnail.addEventListener ('click', function(){
+      arrayForThumbnail[num].classList.remove('image-thumbnail-active');
+      arrayForThumbnail[index].classList.add('image-thumbnail-active');
+      usefull[num].classList.remove('block');
+      num = index;
+      usefull[index].classList.add('block');
+   })
+
 });
 
 num = 0;
@@ -127,7 +151,6 @@ previousButton.addEventListener ('click', function(){
       usefull[num+1].classList.remove('block');
       usefull[num].classList.toggle('block');
    }
-   
 })
 
 

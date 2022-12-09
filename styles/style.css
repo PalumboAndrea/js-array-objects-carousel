@@ -4,26 +4,28 @@ body{
 }
 
 main{
-    height: 80vh;
+    height: 90vh;
 }
 
 div.carousel-wrapper{
-    width: 77%;
+    width: 75%;
     height: 100%;
     margin: auto;
-    background-color: aqua;
     position: relative;
 }
 
 div.carousel-image{
     width: 100%;
-    background-color: blue;
 }
 
-/* div.carousel-thumbnails{
-    width: 21.5%;
-    background-color: violet;
-} */
+div.carousel-thumbnails{
+    width: 25%;
+}
+
+.image-thumbnails{
+    width: 100%;
+    height: calc(100% / 5);
+}
 
 .font-color-white{
     color:white;
@@ -98,5 +100,9 @@ div.my_carousel-item img{
     margin: 0;
 }
 
+.image-thumbnail-active{
+    padding: 1px;
+    opacity: 50%;
+}
 
 
