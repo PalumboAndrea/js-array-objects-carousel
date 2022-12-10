@@ -30,7 +30,6 @@ Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l’imma
 Bonus 3:
 Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva
 dovrà cambiare alla successiva.
-
 */
 
 const images = [
@@ -74,6 +73,8 @@ let carouselThumbnails = document.querySelector('.carousel-thumbnails');
 
 let usefull = [];
 
+// The arrayForThumbnail array has the same principle of the usefull array but it is used for the thumbnail
+
 let arrayForThumbnail = [];
 
 images.forEach((element, index) => {
@@ -100,6 +101,7 @@ images.forEach((element, index) => {
 
    usefull.push(imageContainer);
    
+   // Add the thumbnail with the corresponding images, they are linked with the main image
 
    let imageThumbnails = document.createElement('div');
    imageThumbnails.classList.add('image-thumbnails');
@@ -162,6 +164,26 @@ previousButton.addEventListener ('click', function(){
       arrayForThumbnail[num].classList.add('image-thumbnail-active');
    }
 })
+
+// Implementing the setInterval to change automatically the slide
+// It is a nextButton.addEventListener but it will be activate by the setInterval
+
+setInterval(changeSlide, 3000);
+
+function changeSlide(){
+   num++;
+   if (num>=images.length){
+      usefull[num-1].classList.remove('block');
+      arrayForThumbnail[num-1].classList.remove('image-thumbnail-active');
+      num = 0;
+   }
+   arrayForThumbnail[num].classList.add('image-thumbnail-active');
+   usefull[num].classList.add('block');
+   if (num>0 && num<images.length){
+      usefull[num-1].classList.remove('block');
+      arrayForThumbnail[num-1].classList.remove('image-thumbnail-active');
+   }
+}
 
 
 
